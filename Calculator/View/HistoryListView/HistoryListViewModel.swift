@@ -30,4 +30,16 @@ class HistoryListViewModel: ObservableObject {
         }
         DataManager.share.saveContext()
     }
+    
+    func removeAllResults() {
+        let context = DataManager.share.container.viewContext
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = CalculatorHistory.fetchRequest()
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try context.execute(batchDeleteRequest)
+            DataManager.share.saveContext()
+        } catch {
+            print("Unable to remove all data: \(error.localizedDescription)")
+        }
+    }
 }

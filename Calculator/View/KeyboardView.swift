@@ -44,13 +44,11 @@ struct KeyboardView: View {
         if data.element != "0" {
             CalculatorButton(title: data.element, action: action)
                 .aspectRatio(1.0, contentMode: .fit)
-                .scaledToFill()
                 .foregroundColor(data.color)
         } else {
             CalculatorButton(title: data.element, action: action)
                 .gridCellColumns(2)
                 .foregroundColor(data.color)
-            
         }
     }
 }

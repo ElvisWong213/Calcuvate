@@ -11,54 +11,72 @@ struct HistoryListView: View {
     @EnvironmentObject var basicCalculatorViewModel: BasicCalculatorViewModel
     @StateObject var historyListViewModel = HistoryListViewModel()
     
+    @State var showAlert = false
+    
     var body: some View {
-        List {
-            ForEach(historyListViewModel.results, id: \.self) { result in
-                VStack(alignment: .trailing, spacing: 10) {
-                    Text(result.equation ?? "")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        .foregroundColor(Color.gray)
-                    Text(result.answer ?? "")
-                        .font(.largeTitle)
-                        .fontWeight(.medium)
-                        .foregroundColor(Color.white)
+        ZStack {
+            Color("BackgroundColor")
+                .brightness(-0.1)
+                .ignoresSafeArea()
+            if historyListViewModel.results.isEmpty {
+                VStack {
+                    Spacer()
+                    Text("Use calculator to add record")
+                        .font(.title3)
+                    Spacer()
+                    Image(systemName: "arrow.down")
+                        .font(.title)
+                    Spacer()
                 }
-                .onTapGesture {
-                    basicCalculatorViewModel.equation = result.answer ?? ""
+                .foregroundColor(.white)
+            } else {
+                List {
+                    ForEach(historyListViewModel.results, id: \.self) { result in
+                        VStack(alignment: .trailing, spacing: 10) {
+                            Text(result.equation ?? "")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color.gray)
+                            Text(result.answer ?? "")
+                                .font(.largeTitle)
+                                .fontWeight(.medium)
+                                .foregroundColor(Color.white)
+                        }
+                        .onTapGesture {
+                            switch basicCalculatorViewModel.equation.last {
+                            case "+", "-", "×", "÷":
+                                basicCalculatorViewModel.equation.append(result.answer ?? "")
+                            default:
+                                basicCalculatorViewModel.equation = result.answer ?? ""
+                            }
+                        }
+                    }
+                    .onDelete(perform: { index in
+                        historyListViewModel.removeResults(offsets: index)
+                        historyListViewModel.fetchResults()
+                    })
+                    .listRowBackground(
+                        Color("BackgroundColor")
+                            .brightness(-0.1)
+                    )
+                    .frame(maxWidth: .infinity, maxHeight: .infinity,alignment: .trailing)
+                    .foregroundColor(.white)
                 }
             }
-            .onDelete(perform: { index in
-                historyListViewModel.removeResults(offsets: index)
-                historyListViewModel.fetchResults()
-            })
-            .listRowBackground(
-                Color("BackgroundColor")
-                .brightness(-0.1)
-            )
-            .frame(maxWidth: .infinity, maxHeight: .infinity,alignment: .trailing)
-            .foregroundColor(.white)
         }
         .navigationTitle("Records")
-        .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(Color("BackgroundColor"))
         .toolbarBackground(.visible)
         .toolbarColorScheme(.dark)
-        .overlay(content: {
-            if historyListViewModel.results.isEmpty {
-                ZStack {
-                    Color("BackgroundColor")
-                        .brightness(-0.1)
-                    Text("Use calculator to add record")
-                        .foregroundColor(.white)
-                        .font(.title3)
+        .toolbar(content: {
+            ToolbarItem {
+                Button("Remove all") {
+                    historyListViewModel.removeAllResults()
+                    historyListViewModel.fetchResults()
                 }
             }
         })
-        .background() {
-            Color("BackgroundColor")
-                .brightness(-0.1)
-        }
+        .navigationBarTitleDisplayMode(.inline)
         .scrollContentBackground(.hidden)
         .onAppear() {
             historyListViewModel.fetchResults()
@@ -66,8 +84,11 @@ struct HistoryListView: View {
         .onChange(of: basicCalculatorViewModel.finish) { _ in
             historyListViewModel.fetchResults()
         }
-        
+        .refreshable {
+            historyListViewModel.fetchResults()
+        }
     }
+        
 }
 
 struct HistoryListView_Previews: PreviewProvider {

@@ -32,7 +32,7 @@ struct BasicCalculatorView: View {
                                         .fixedSize(horizontal: false, vertical: true)
                                 }
                                 .environmentObject(basicCalculatorViewModel)
-                                .presentationDetents([.fraction(1), .fraction(0.8), .fraction(0.1)])
+                                .presentationDetents([.fraction(0.1), .fraction(0.8)])
                                 .presentationBackgroundInteraction(.enabled)
                                 .presentationDragIndicator(.visible)
                                 .presentationBackground(Color("BackgroundColor"))

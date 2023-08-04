@@ -32,8 +32,11 @@ struct DisplayNumberView: View {
         .gesture(
             DragGesture()
                 .onChanged{ value in
-                    if value.translation.width > 0 && swip {
-                        basicCalculatorViewModel.equation.removeLast()
+                    print(value)
+                    if value.translation.width > 5 && swip {
+                        if !basicCalculatorViewModel.equation.isEmpty {
+                            basicCalculatorViewModel.equation.removeLast()
+                        }
                         swip = false
                     }
                 }

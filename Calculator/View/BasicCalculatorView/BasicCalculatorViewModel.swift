@@ -18,10 +18,12 @@ class BasicCalculatorViewModel: ObservableObject {
             equation = ""
         case "=":
             do {
-                history = equation
-                equation = try findAns()
-                finish = true
-                addResults()
+                if finish == false {
+                    history = equation
+                    equation = try findAns()
+                    finish = true
+                    addResults()
+                }
             } catch {
                 history = ""
                 equation = "Syntax Error"
