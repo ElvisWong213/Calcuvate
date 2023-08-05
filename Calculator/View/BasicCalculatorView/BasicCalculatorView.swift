@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct BasicCalculatorView: View {
-    @StateObject var basicCalculatorViewModel = BasicCalculatorViewModel()
-    @State var showBottomSheet = true
+    @StateObject var keyboardViewModel = KeyboardViewModel()
     
     var body: some View {
         NavigationStack {
@@ -19,22 +18,20 @@ struct BasicCalculatorView: View {
                     .brightness(-0.1)
                 VStack {
                     HistoryListView()
-                        .frame(height: UIScreen.main.bounds.height * 0.8)
-                        .environmentObject(basicCalculatorViewModel)
-                        .sheet(isPresented: $showBottomSheet) {
+                        .frame(height: UIScreen.main.bounds.height * 0.7)
+                        .environmentObject(keyboardViewModel)
+                        .sheet(isPresented: .constant(true)) {
                             GeometryReader { gr in
                                 VStack {
-                                    Spacer()
                                     DisplayNumberView()
-                                        .frame(minWidth: gr.size.height * 0.3)
                                         .fixedSize(horizontal: false, vertical: true)
                                     KeyboardView()
                                         .fixedSize(horizontal: false, vertical: true)
                                 }
-                                .environmentObject(basicCalculatorViewModel)
-                                .presentationDetents([.fraction(0.1), .fraction(0.8)])
+                                .environmentObject(keyboardViewModel)
+                                .presentationDetents([.fraction(0.2), .fraction(0.8)])
                                 .presentationBackgroundInteraction(.enabled)
-                                .presentationDragIndicator(.visible)
+                                .presentationDragIndicator(.hidden)
                                 .presentationBackground(Color("BackgroundColor"))
                                 .interactiveDismissDisabled()
                             }

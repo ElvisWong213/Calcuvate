@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HistoryListView: View {
-    @EnvironmentObject var basicCalculatorViewModel: BasicCalculatorViewModel
+    @EnvironmentObject var keyboardViewModel: KeyboardViewModel
     @StateObject var historyListViewModel = HistoryListViewModel()
     
     @State var showAlert = false
@@ -19,16 +19,7 @@ struct HistoryListView: View {
                 .brightness(-0.1)
                 .ignoresSafeArea()
             if historyListViewModel.results.isEmpty {
-                VStack {
-                    Spacer()
-                    Text("Use calculator to add record")
-                        .font(.title3)
-                    Spacer()
-                    Image(systemName: "arrow.down")
-                        .font(.title)
-                    Spacer()
-                }
-                .foregroundColor(.white)
+                CalculatorEmptyView()
             } else {
                 List {
                     ForEach(historyListViewModel.results, id: \.self) { result in
@@ -43,11 +34,11 @@ struct HistoryListView: View {
                                 .foregroundColor(Color.white)
                         }
                         .onTapGesture {
-                            switch basicCalculatorViewModel.equation.last {
+                            switch keyboardViewModel.equation.last {
                             case "+", "-", "×", "÷":
-                                basicCalculatorViewModel.equation.append(result.answer ?? "")
+                                keyboardViewModel.equation.append(result.answer ?? "")
                             default:
-                                basicCalculatorViewModel.equation = result.answer ?? ""
+                                keyboardViewModel.equation = result.answer ?? ""
                             }
                         }
                     }
@@ -81,7 +72,7 @@ struct HistoryListView: View {
         .onAppear() {
             historyListViewModel.fetchResults()
         }
-        .onChange(of: basicCalculatorViewModel.finish) { _ in
+        .onChange(of: keyboardViewModel.finish) { _ in
             historyListViewModel.fetchResults()
         }
         .refreshable {
@@ -94,6 +85,6 @@ struct HistoryListView: View {
 struct HistoryListView_Previews: PreviewProvider {
     static var previews: some View {
         HistoryListView()
-            .environmentObject(BasicCalculatorViewModel())
+            .environmentObject(KeyboardViewModel())
     }
 }
