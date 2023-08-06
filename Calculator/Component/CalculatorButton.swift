@@ -12,10 +12,15 @@ struct CalculatorButton: View {
     let action: () -> Void
     
     var body: some View {
-        Button(action: action) {
+        Button(action: {
+            action()
+            let impact = UIImpactFeedbackGenerator(style: .rigid)
+            impact.impactOccurred()
+        }) {
             Text(title)
         }
         .buttonStyle(CalculatorButtonStyle())
+        
     }
 }
 

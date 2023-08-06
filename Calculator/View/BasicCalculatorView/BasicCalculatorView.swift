@@ -23,9 +23,12 @@ struct BasicCalculatorView: View {
                         .sheet(isPresented: .constant(true)) {
                             GeometryReader { gr in
                                 VStack {
+                                    Spacer()
                                     DisplayNumberView()
                                         .fixedSize(horizontal: false, vertical: true)
+                                        .padding(.horizontal)
                                     KeyboardView()
+                                        .padding(.horizontal)
                                         .fixedSize(horizontal: false, vertical: true)
                                 }
                                 .environmentObject(keyboardViewModel)

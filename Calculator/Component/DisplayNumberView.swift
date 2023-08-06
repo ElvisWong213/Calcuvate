@@ -26,9 +26,8 @@ struct DisplayNumberView: View {
             }
             .animation(.easeIn(duration: 0.2), value: keyboardViewModel.history)
             .lineLimit(1)
-            .minimumScaleFactor(0.5)
+            .minimumScaleFactor(0.1)
         }
-        .padding()
         .gesture(
             DragGesture()
                 .onChanged{ value in
