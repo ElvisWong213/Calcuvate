@@ -10,6 +10,8 @@ import SwiftUI
 
 class KeyboardViewModel: ObservableObject {
     let calculate = Calculate()
+    private let viewContext = DataManager.shared.viewContext
+    
     @Published var history: String = ""
     @Published var equation: String = ""
     @Published var finish = false
@@ -102,12 +104,11 @@ extension KeyboardViewModel {
     }
     
     private func addResults() {
-        let context = DataManager.share.container.viewContext
-        let newResult = CalculatorHistory(context: context)
+        let newResult = CalculatorHistory(context: viewContext)
         newResult.id = UUID()
         newResult.createDate = Date()
         newResult.equation = history
         newResult.answer = equation
-        DataManager.share.saveContext()
+        DataManager.shared.saveContext()
     }
 }

@@ -42,9 +42,8 @@ struct HistoryListView: View {
                             }
                         }
                     }
-                    .onDelete(perform: { index in
-                        historyListViewModel.removeResults(offsets: index)
-                        historyListViewModel.fetchResults()
+                    .onDelete(perform: { offsets in
+                        historyListViewModel.removeResults(offsets: offsets)
                     })
                     .listRowBackground(
                         Color("BackgroundColor")
