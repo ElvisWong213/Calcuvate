@@ -15,8 +15,9 @@ class Negate: Node<Any> {
         super.init(val: "-")
     }
     
-    override func eval() -> Double {
-        return -1 * arg.eval()
+    override func eval() throws -> Double {
+        let nodeArg = try arg.eval()
+        return -1 * nodeArg
     }
     
     override func print() -> String {

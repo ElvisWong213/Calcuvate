@@ -12,8 +12,10 @@ class Add: InfixOperation {
         super.init(val: "+", left: left, right: right)
     }
     
-    override func eval() -> Double {
-        return left.eval() + right.eval()
+    override func eval() throws -> Double {
+        let nodeLeft = try left.eval()
+        let nodeRight = try right.eval()
+        return nodeLeft + nodeRight
     }
     
     override func print() -> String {

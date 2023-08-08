@@ -18,14 +18,14 @@ class Calculate {
         self.nextToken = " "
     }
     
-    func perform(input: String) -> String {
+    func perform(input: String) throws -> Double {
         self.index = 0
         self.input = input
         scanToken()
-        guard let result = parseE()?.eval() else {
-            return ""
+        guard let result = parseE() else {
+            throw CalCulatorError.SyntaxError
         }
-        return String(result)
+        return try result.eval()
     }
 
     private func scanToken() {
@@ -61,23 +61,25 @@ class Calculate {
     }
 
     private func parseT() -> Node<Any>? {
-        guard let a = parseF() else {
+        guard var a = parseF() else {
             return nil
         }
-        if nextToken == "×" {
-            scanToken()
-            guard let b = parseT() else {
-                return nil
+        while true {
+            if nextToken == "×" {
+                scanToken()
+                guard let b = parseF() else {
+                    return nil
+                }
+                a = Multiplication(left: a, right: b)
+            } else if nextToken == "÷" {
+                scanToken()
+                guard let b = parseF() else {
+                    return nil
+                }
+                a = Division(left: a, right: b)
+            } else {
+                return a
             }
-            return Multiplication(left: a, right: b)
-        } else if nextToken == "÷" {
-            scanToken()
-            guard let b = parseT() else {
-                return nil
-            }
-            return Division(left: a, right: b)
-        } else {
-            return a
         }
     }
 

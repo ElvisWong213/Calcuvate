@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 class KeyboardViewModel: ObservableObject {
+    let calculate = Calculate()
     @Published var history: String = ""
     @Published var equation: String = ""
     @Published var finish = false
@@ -74,13 +75,13 @@ extension KeyboardViewModel {
             do {
                 if finish == false {
                     history = equation
-                    equation = try findAns()
+                    equation = String(try calculate.perform(input: equation))
                     finish = true
                     addResults()
                 }
             } catch {
                 history = ""
-                equation = "Syntax Error"
+                equation = error.localizedDescription
             }
         case "+", "-", "×", "÷":
             if equation.contains("Syntax Error") {
@@ -100,149 +101,6 @@ extension KeyboardViewModel {
         }
     }
     
-    private func toPostfix() throws -> [String] {
-        var stack: [String] = []
-        var operatorStack: [String] = []
-        var buffer: String = ""
-        var numCounter = 0
-        var operatorCounter = 0
-        var quotationCounter = 0
-        for element in equation {
-            switch element {
-            case "+", "-", "×", "÷":
-                if !buffer.isEmpty {
-                    if buffer == "." {
-                        throw CalCulatorError.SyntaxError
-                    }
-                    numCounter += 1
-                    stack.append(buffer)
-                    buffer.removeAll()
-                }
-                while operatorStack.last != nil {
-                    if let lastOperator = operatorStack.last {
-                        if operatorPriority(input: String(element)) <= operatorPriority(input: lastOperator) {
-                            stack.append(operatorStack.popLast()!)
-                        } else {
-                            break
-                        }
-                    }
-                }
-                operatorCounter += 1
-                operatorStack.append(String(element))
-            case "(":
-                if !buffer.isEmpty {
-                    if buffer == "." {
-                        throw CalCulatorError.SyntaxError
-                    }
-                    numCounter += 1
-                    stack.append(buffer)
-                    buffer.removeAll()
-                }
-                quotationCounter += 1
-                operatorStack.append(String(element))
-            case ")":
-                if !buffer.isEmpty {
-                    if buffer == "." {
-                        throw CalCulatorError.SyntaxError
-                    }
-                    numCounter += 1
-                    stack.append(buffer)
-                    buffer.removeAll()
-                }
-                while operatorStack.last != nil {
-                    if operatorStack.last != "(" {
-                        stack.append(operatorStack.popLast()!)
-                    } else {
-                        operatorStack.removeLast()
-                        quotationCounter -= 1
-                        break
-                    }
-                }
-            case "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".":
-                buffer.append(element)
-            default:
-                throw CalCulatorError.SyntaxError
-            }
-        }
-        if !buffer.isEmpty {
-            if buffer == "." {
-                throw CalCulatorError.SyntaxError
-            }
-            numCounter += 1
-            stack.append(buffer)
-            buffer.removeAll()
-        }
-        if !operatorStack.isEmpty {
-            stack.append(contentsOf: operatorStack.reversed())
-            operatorStack.removeAll()
-        }
-        print(stack)
-        if operatorCounter != numCounter - 1 || quotationCounter != 0 {
-            throw CalCulatorError.SyntaxError
-        }
-        return stack
-    }
-    
-    func findAns() throws -> String {
-        guard let postfix = try? toPostfix() else {
-            throw CalCulatorError.SyntaxError
-        }
-        var stack: [Double] = []
-        for element in postfix {
-            switch element {
-            case "+":
-                guard let first = stack.popLast() else {
-                    break
-                }
-                guard let second = stack.popLast() else {
-                    break
-                }
-                stack.append(second + first)
-            case "-":
-                guard let first = stack.popLast() else {
-                    break
-                }
-                guard let second = stack.popLast() else {
-                    break
-                }
-                stack.append(second - first)
-            case "×":
-                guard let first = stack.popLast() else {
-                    break
-                }
-                guard let second = stack.popLast() else {
-                    break
-                }
-                stack.append(second * first)
-            case "÷":
-                guard let first = stack.popLast() else {
-                    break
-                }
-                guard let second = stack.popLast() else {
-                    break
-                }
-                stack.append(second / first)
-            default:
-                stack.append(Double(element)!)
-            }
-        }
-        if stack.count == 1 {
-            return String(format: "%.3f", stack[0])
-        }
-        return ""
-    }
-    
-    private func operatorPriority(input: String) -> Int {
-        switch input {
-        case "+", "-":
-            return 1
-        case "×", "÷":
-            return 2
-        default:
-            return 0
-        }
-    }
-    
     private func addResults() {
         let context = DataManager.share.container.viewContext
         let newResult = CalculatorHistory(context: context)
@@ -252,9 +110,4 @@ extension KeyboardViewModel {
         newResult.answer = equation
         DataManager.share.saveContext()
     }
-}
-
-
-enum CalCulatorError: Error {
-    case SyntaxError
 }

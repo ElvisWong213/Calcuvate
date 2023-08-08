@@ -22,7 +22,7 @@ class Node<T: Any> {
         self.val = val
     }
     
-    func eval() -> Double {
+    func eval() throws -> Double {
         return self.val as! Double
     }
     

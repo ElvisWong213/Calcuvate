@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "DBACF56A-11AE-46C7-8589-A579791DFEE7",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Calculator.xcodeproj",
+        "identifier" : "AA79584F2A8279A4002EB831",
+        "name" : "CalculatorTests"
+      }
+    }
+  ],
+  "version" : 1
+}
