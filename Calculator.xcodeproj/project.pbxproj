@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		AA2100142A7D84FD00849BDC /* KeyboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2100132A7D84FD00849BDC /* KeyboardViewModel.swift */; };
 		AA2100162A7D85B500849BDC /* CalculatorEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2100152A7D85B500849BDC /* CalculatorEmptyView.swift */; };
+		AA2100192A82542D00849BDC /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2100182A82542D00849BDC /* Node.swift */; };
+		AA21001B2A82548B00849BDC /* InfixOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA21001A2A82548B00849BDC /* InfixOperation.swift */; };
+		AA21001D2A8254AA00849BDC /* Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA21001C2A8254AA00849BDC /* Add.swift */; };
+		AA21001F2A8254BB00849BDC /* Subtract.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA21001E2A8254BB00849BDC /* Subtract.swift */; };
+		AA2100212A8254EC00849BDC /* Multiplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2100202A8254EC00849BDC /* Multiplication.swift */; };
+		AA2100232A82551700849BDC /* Division.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2100222A82551700849BDC /* Division.swift */; };
+		AA2100252A82554200849BDC /* Negate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2100242A82554200849BDC /* Negate.swift */; };
+		AA2100272A82554F00849BDC /* MyDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2100262A82554F00849BDC /* MyDouble.swift */; };
+		AA21002A2A82645400849BDC /* Calculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2100292A82645400849BDC /* Calculate.swift */; };
 		AA539AA92A79F33500B4BAAA /* CalculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA539AA82A79F33500B4BAAA /* CalculatorApp.swift */; };
 		AA539AAB2A79F33500B4BAAA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA539AAA2A79F33500B4BAAA /* ContentView.swift */; };
 		AA539AAD2A79F33600B4BAAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA539AAC2A79F33600B4BAAA /* Assets.xcassets */; };
@@ -26,6 +35,15 @@
 /* Begin PBXFileReference section */
 		AA2100132A7D84FD00849BDC /* KeyboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewModel.swift; sourceTree = "<group>"; };
 		AA2100152A7D85B500849BDC /* CalculatorEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorEmptyView.swift; sourceTree = "<group>"; };
+		AA2100182A82542D00849BDC /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		AA21001A2A82548B00849BDC /* InfixOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfixOperation.swift; sourceTree = "<group>"; };
+		AA21001C2A8254AA00849BDC /* Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Add.swift; sourceTree = "<group>"; };
+		AA21001E2A8254BB00849BDC /* Subtract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subtract.swift; sourceTree = "<group>"; };
+		AA2100202A8254EC00849BDC /* Multiplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Multiplication.swift; sourceTree = "<group>"; };
+		AA2100222A82551700849BDC /* Division.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Division.swift; sourceTree = "<group>"; };
+		AA2100242A82554200849BDC /* Negate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Negate.swift; sourceTree = "<group>"; };
+		AA2100262A82554F00849BDC /* MyDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDouble.swift; sourceTree = "<group>"; };
+		AA2100292A82645400849BDC /* Calculate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculate.swift; sourceTree = "<group>"; };
 		AA539AA52A79F33500B4BAAA /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA539AA82A79F33500B4BAAA /* CalculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorApp.swift; sourceTree = "<group>"; };
 		AA539AAA2A79F33500B4BAAA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,6 +98,30 @@
 			path = Component;
 			sourceTree = "<group>";
 		};
+		AA2100172A82541000849BDC /* AbstractSyntaxTrees */ = {
+			isa = PBXGroup;
+			children = (
+				AA2100282A825CA300849BDC /* Operater */,
+				AA2100292A82645400849BDC /* Calculate.swift */,
+			);
+			path = AbstractSyntaxTrees;
+			sourceTree = "<group>";
+		};
+		AA2100282A825CA300849BDC /* Operater */ = {
+			isa = PBXGroup;
+			children = (
+				AA2100182A82542D00849BDC /* Node.swift */,
+				AA21001A2A82548B00849BDC /* InfixOperation.swift */,
+				AA21001C2A8254AA00849BDC /* Add.swift */,
+				AA21001E2A8254BB00849BDC /* Subtract.swift */,
+				AA2100202A8254EC00849BDC /* Multiplication.swift */,
+				AA2100222A82551700849BDC /* Division.swift */,
+				AA2100242A82554200849BDC /* Negate.swift */,
+				AA2100262A82554F00849BDC /* MyDouble.swift */,
+			);
+			path = Operater;
+			sourceTree = "<group>";
+		};
 		AA539A9C2A79F33500B4BAAA = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +141,7 @@
 		AA539AA72A79F33500B4BAAA /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				AA2100172A82541000849BDC /* AbstractSyntaxTrees */,
 				AA2100122A7D84B600849BDC /* Component */,
 				AA2100112A7D849F00849BDC /* Model */,
 				AA63D8662A7C0A8B004FEAF4 /* View */,
@@ -215,17 +258,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA21001B2A82548B00849BDC /* InfixOperation.swift in Sources */,
+				AA21001F2A8254BB00849BDC /* Subtract.swift in Sources */,
+				AA2100232A82551700849BDC /* Division.swift in Sources */,
 				AA539AAB2A79F33500B4BAAA /* ContentView.swift in Sources */,
 				AA63D8712A7C5C4C004FEAF4 /* HistoryListViewModel.swift in Sources */,
+				AA21001D2A8254AA00849BDC /* Add.swift in Sources */,
+				AA2100272A82554F00849BDC /* MyDouble.swift in Sources */,
 				AA63D86F2A7C48CE004FEAF4 /* DataManager.swift in Sources */,
 				AA63D86A2A7C38D8004FEAF4 /* HistoryListView.swift in Sources */,
+				AA2100212A8254EC00849BDC /* Multiplication.swift in Sources */,
 				AA539AB72A7A75E200B4BAAA /* CalculatorButton.swift in Sources */,
+				AA2100192A82542D00849BDC /* Node.swift in Sources */,
 				AA539AA92A79F33500B4BAAA /* CalculatorApp.swift in Sources */,
 				AA63D86D2A7C4876004FEAF4 /* Model.xcdatamodeld in Sources */,
 				AA539ABD2A7AA9C100B4BAAA /* DisplayNumberView.swift in Sources */,
+				AA21002A2A82645400849BDC /* Calculate.swift in Sources */,
 				AA539ABB2A7A971100B4BAAA /* KeyboardView.swift in Sources */,
 				AA539ABF2A7AB32500B4BAAA /* BasicCalculatorView.swift in Sources */,
 				AA2100142A7D84FD00849BDC /* KeyboardViewModel.swift in Sources */,
+				AA2100252A82554200849BDC /* Negate.swift in Sources */,
 				AA2100162A7D85B500849BDC /* CalculatorEmptyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

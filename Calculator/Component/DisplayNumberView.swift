@@ -31,7 +31,7 @@ struct DisplayNumberView: View {
         .gesture(
             DragGesture()
                 .onChanged{ value in
-                    if value.translation.width > 5 && swip {
+                    if value.translation.width > 10 && swip {
                         if !keyboardViewModel.equation.isEmpty {
                             keyboardViewModel.equation.removeLast()
                         }
