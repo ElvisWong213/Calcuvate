@@ -26,6 +26,10 @@ final class AbstractSyntaxTrees: XCTestCase {
         XCTAssertEqual(877.0, try calculate.perform(input: "1000-123"))
         XCTAssertEqual(123000.0, try calculate.perform(input: "1000×123"))
         XCTAssertEqual(25.0, try calculate.perform(input: "50÷2"))
+        XCTAssertEqual(1.0, try calculate.perform(input: "8÷4÷2"))
+        XCTAssertEqual(40.0, try calculate.perform(input: "4(5×2)"))
+        XCTAssertEqual(240.0, try calculate.perform(input: "(6×4)(5×2)"))
+        XCTAssertEqual(34.0, try calculate.perform(input: "(6×4)+(5×2)"))
         XCTAssertEqual(-0.875, try calculate.perform(input: "2+3-4÷8×(7+3-4)÷3×5-(3+4)÷8"))
     }
     

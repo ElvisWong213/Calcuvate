@@ -71,13 +71,19 @@ class Calculate {
                     return nil
                 }
                 a = Multiplication(left: a, right: b)
+            } else if nextToken == "(" {
+                guard let b = parseF() else {
+                    return nil
+                }
+                a = Multiplication(left: a, right: b)
             } else if nextToken == "÷" {
                 scanToken()
                 guard let b = parseF() else {
                     return nil
                 }
                 a = Division(left: a, right: b)
-            } else {
+            }
+            else {
                 return a
             }
         }
