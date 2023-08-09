@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HistoryListView: View {
     @EnvironmentObject var keyboardViewModel: KeyboardViewModel
-    @StateObject var historyListViewModel = HistoryListViewModel()
+    @StateObject var viewModel = HistoryListViewModel()
     
     @State var showAlert = false
     
@@ -18,11 +18,11 @@ struct HistoryListView: View {
             Color("BackgroundColor")
                 .brightness(-0.1)
                 .ignoresSafeArea()
-            if historyListViewModel.results.isEmpty {
+            if viewModel.results.isEmpty {
                 CalculatorEmptyView()
             } else {
                 List {
-                    ForEach(historyListViewModel.results, id: \.self) { result in
+                    ForEach(viewModel.results, id: \.self) { result in
                         VStack(alignment: .trailing, spacing: 10) {
                             Text(result.equation ?? "")
                                 .font(.title2)
@@ -43,7 +43,7 @@ struct HistoryListView: View {
                         }
                     }
                     .onDelete(perform: { offsets in
-                        historyListViewModel.removeResults(offsets: offsets)
+                        viewModel.removeResults(offsets: offsets)
                     })
                     .listRowBackground(
                         Color("BackgroundColor")
@@ -61,21 +61,21 @@ struct HistoryListView: View {
         .toolbar(content: {
             ToolbarItem {
                 Button("Remove all") {
-                    historyListViewModel.removeAllResults()
-                    historyListViewModel.fetchResults()
+                    viewModel.removeAllResults()
+                    viewModel.fetchResults()
                 }
             }
         })
         .navigationBarTitleDisplayMode(.inline)
         .scrollContentBackground(.hidden)
         .onAppear() {
-            historyListViewModel.fetchResults()
+            viewModel.fetchResults()
         }
         .onChange(of: keyboardViewModel.finish) { _ in
-            historyListViewModel.fetchResults()
+            viewModel.fetchResults()
         }
         .refreshable {
-            historyListViewModel.fetchResults()
+            viewModel.fetchResults()
         }
     }
         

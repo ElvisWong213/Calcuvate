@@ -2,6 +2,9 @@
     <h1 align="center">Calculator App</h1>
 </p>
 
+## About this project
+
+
 ## Used Technology
 - SwiftUI 📱
 - CoreData 💾

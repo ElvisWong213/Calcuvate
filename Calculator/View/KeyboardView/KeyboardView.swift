@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct KeyboardView: View {
-    @EnvironmentObject var keyboardViewModel: KeyboardViewModel
+    @EnvironmentObject var viewModel: KeyboardViewModel
     
     var body: some View {
         Grid(horizontalSpacing: 20, verticalSpacing: 20) {
-            ForEach(0..<keyboardViewModel.layout.count, id: \.self) { index in
+            ForEach(0..<viewModel.layout.count, id: \.self) { index in
                 GridRow {
-                    ForEach(keyboardViewModel.layout[index]) { item in
-                        keyboardViewModel.customButton(data: item) {
-                            keyboardViewModel.buildEquation(element: item.element)
+                    ForEach(viewModel.layout[index]) { item in
+                        viewModel.customButton(data: item) {
+                            viewModel.buildEquation(element: item.element)
                         }
                     }
                 }
