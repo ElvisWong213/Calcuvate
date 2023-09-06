@@ -16,7 +16,7 @@ class KeyboardViewModel: ObservableObject {
     @Published var equation: String = ""
     @Published var finish = false
     
-    let layout: [[NumberWithColor]] =
+    let layout: [[KeyWithColor]] =
     [
         [.init(element: "AC", color: KeyboardColor.operatorColor2.color), .init(element: "(", color: KeyboardColor.operatorColor2.color), .init(element: ")", color: KeyboardColor.operatorColor2.color), .init(element: "÷", color: KeyboardColor.operatorColor.color)],
         [.init(element: "7", color: KeyboardColor.numberColor.color), .init(element: "8", color: KeyboardColor.numberColor.color), .init(element: "9", color: KeyboardColor.numberColor.color), .init(element: "×", color: KeyboardColor.operatorColor.color)],
@@ -31,7 +31,7 @@ class KeyboardViewModel: ObservableObject {
     //        ["0", ".", "="]
     
     @ViewBuilder
-    func customButton(data: NumberWithColor, action: @escaping () -> Void) -> some View {
+    func customButton(data: KeyWithColor, action: @escaping () -> Void) -> some View {
         if data.element != "0" {
             CalculatorButton(title: data.element, action: action)
                 .aspectRatio(1.0, contentMode: .fit)
@@ -40,30 +40,6 @@ class KeyboardViewModel: ObservableObject {
             CalculatorButton(title: data.element, action: action)
                 .gridCellColumns(2)
                 .foregroundColor(data.color)
-        }
-    }
-}
-
-extension KeyboardViewModel {
-    struct NumberWithColor: Identifiable {
-        let id = UUID()
-        
-        let element: String
-        let color: Color
-    }
-
-    enum KeyboardColor {
-        case numberColor, operatorColor, operatorColor2
-        
-        var color: Color {
-            switch self {
-            case .numberColor:
-                return Color("NumberColor")
-            case .operatorColor:
-                return Color("OperatorColor")
-            case .operatorColor2:
-                return Color("OperatorColor2")
-            }
         }
     }
 }
@@ -86,13 +62,13 @@ extension KeyboardViewModel {
                 equation = error.localizedDescription
             }
         case "+", "-", "×", "÷":
-            if equation.contains("Syntax Error") {
+            if equation.contains("SyntaxError") {
                 equation.removeAll()
             }
             finish = false
             equation.append(element)
         default:
-            if equation.contains("Syntax Error") {
+            if equation.contains("SyntaxError") {
                 equation.removeAll()
             }
             if finish {

@@ -7,10 +7,12 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class HistoryListViewModel: ObservableObject {
-    private let viewContext = DataManager.shared.viewContext
     @Published var results: [CalculatorHistory] = []
+    private let viewContext = DataManager.shared.viewContext
+    private let pastboard = UIPasteboard.general
     
     init() {
         fetchResults()
@@ -44,4 +46,7 @@ class HistoryListViewModel: ObservableObject {
         }
     }
     
+    func copyResultToPasteboard(result: String) {
+        pastboard.string = result
+    }
 }

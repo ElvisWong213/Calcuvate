@@ -23,16 +23,20 @@ struct HistoryListView: View {
             } else {
                 List {
                     ForEach(viewModel.results, id: \.self) { result in
-                        VStack(alignment: .trailing, spacing: 10) {
-                            Text(result.equation ?? "")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color.gray)
-                            Text(result.answer ?? "")
-                                .font(.largeTitle)
-                                .fontWeight(.medium)
-                                .foregroundColor(Color.white)
+                        HStack {
+                            Spacer()
+                            VStack(alignment: .trailing, spacing: 10) {
+                                Text(result.equation ?? "")
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(Color.gray)
+                                Text(result.answer ?? "")
+                                    .font(.largeTitle)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color.white)
+                            }
                         }
+                        .contentShape(Rectangle())
                         .onTapGesture {
                             switch keyboardViewModel.equation.last {
                             case "+", "-", "×", "÷":
@@ -40,6 +44,32 @@ struct HistoryListView: View {
                             default:
                                 keyboardViewModel.equation = result.answer ?? ""
                             }
+                        }
+                        .contextMenu {
+                            Button {
+                                viewModel.copyResultToPasteboard(result: result.equation ?? "")
+                            } label: {
+                                HStack {
+                                    Image(systemName: "function")
+                                    Text("Copy equation")
+                                }
+                            }
+                            Button {
+                                viewModel.copyResultToPasteboard(result: result.answer ?? "")
+                            } label: {
+                                HStack {
+                                    Image(systemName: "equal.square")
+                                    Text("Copy answer")
+                                }
+                            }
+                        }
+                        .swipeActions(edge: .leading) {
+                            Button {
+                                viewModel.copyResultToPasteboard(result: result.answer ?? "")
+                            } label: {
+                                Text("Copy answer")
+                            }
+                            .tint(.green)
                         }
                     }
                     .onDelete(perform: { offsets in
@@ -52,6 +82,7 @@ struct HistoryListView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity,alignment: .trailing)
                     .foregroundColor(.white)
                 }
+                .listStyle(.plain)
             }
         }
         .navigationTitle("Records")

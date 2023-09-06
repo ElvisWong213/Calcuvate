@@ -34,7 +34,7 @@ struct BasicCalculatorView: View {
                                 .environmentObject(keyboardViewModel)
                                 .presentationDetents([.fraction(0.2), .fraction(0.8)])
                                 .presentationBackgroundInteraction(.enabled)
-                                .presentationDragIndicator(.hidden)
+                                .presentationDragIndicator(.visible)
                                 .presentationBackground(Color("BackgroundColor"))
                                 .interactiveDismissDisabled()
                             }
