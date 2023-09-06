@@ -5,7 +5,7 @@
 ## About this project
 
 
-## Used Technology
+## Framework Used
 - SwiftUI 📱
 - CoreData 💾
 
