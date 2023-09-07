@@ -33,6 +33,7 @@ struct CalculatorButton_Previews: PreviewProvider {
 fileprivate struct CalculatorButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
+            .fixedSize()
             .foregroundColor(.white)
             .font(.title)
             .bold()

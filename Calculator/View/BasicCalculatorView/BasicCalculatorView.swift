@@ -21,23 +21,8 @@ struct BasicCalculatorView: View {
                         .frame(height: UIScreen.main.bounds.height * 0.7)
                         .environmentObject(keyboardViewModel)
                         .sheet(isPresented: .constant(true)) {
-                            GeometryReader { gr in
-                                VStack {
-                                    Spacer()
-                                    DisplayNumberView()
-                                        .fixedSize(horizontal: false, vertical: true)
-                                        .padding(.horizontal)
-                                    KeyboardView()
-                                        .padding(.horizontal)
-                                        .fixedSize(horizontal: false, vertical: true)
-                                }
+                            SheetView()
                                 .environmentObject(keyboardViewModel)
-                                .presentationDetents([.fraction(0.2), .fraction(0.8)])
-                                .presentationBackgroundInteraction(.enabled)
-                                .presentationDragIndicator(.visible)
-                                .presentationBackground(Color("BackgroundColor"))
-                                .interactiveDismissDisabled()
-                            }
                         }
                     Spacer()
                 }

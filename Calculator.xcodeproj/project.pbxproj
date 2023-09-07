@@ -20,6 +20,7 @@
 		AA21002A2A82645400849BDC /* Calculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2100292A82645400849BDC /* Calculate.swift */; };
 		AA3AA5C72AA91F7900780F1C /* KeyboardColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AA5C62AA91F7900780F1C /* KeyboardColor.swift */; };
 		AA3AA5C92AA91F9A00780F1C /* KeyWithColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AA5C82AA91F9A00780F1C /* KeyWithColor.swift */; };
+		AA3AA5CD2AAA459000780F1C /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AA5CC2AAA459000780F1C /* SheetView.swift */; };
 		AA539AA92A79F33500B4BAAA /* CalculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA539AA82A79F33500B4BAAA /* CalculatorApp.swift */; };
 		AA539AAB2A79F33500B4BAAA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA539AAA2A79F33500B4BAAA /* ContentView.swift */; };
 		AA539AAD2A79F33600B4BAAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA539AAC2A79F33600B4BAAA /* Assets.xcassets */; };
@@ -60,6 +61,7 @@
 		AA2100292A82645400849BDC /* Calculate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculate.swift; sourceTree = "<group>"; };
 		AA3AA5C62AA91F7900780F1C /* KeyboardColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardColor.swift; sourceTree = "<group>"; };
 		AA3AA5C82AA91F9A00780F1C /* KeyWithColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyWithColor.swift; sourceTree = "<group>"; };
+		AA3AA5CC2AAA459000780F1C /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
 		AA539AA52A79F33500B4BAAA /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA539AA82A79F33500B4BAAA /* CalculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorApp.swift; sourceTree = "<group>"; };
 		AA539AAA2A79F33500B4BAAA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				AA2100102A7D847E00849BDC /* KeyboardView */,
 				AA63D8652A7C0A82004FEAF4 /* BasicCalculatorView */,
 				AA63D8722A7C5C59004FEAF4 /* HistoryListView */,
+				AA3AA5CC2AAA459000780F1C /* SheetView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				AA3AA5C72AA91F7900780F1C /* KeyboardColor.swift in Sources */,
 				AA63D86A2A7C38D8004FEAF4 /* HistoryListView.swift in Sources */,
 				AA2100212A8254EC00849BDC /* Multiplication.swift in Sources */,
+				AA3AA5CD2AAA459000780F1C /* SheetView.swift in Sources */,
 				AA539AB72A7A75E200B4BAAA /* CalculatorButton.swift in Sources */,
 				AA2100192A82542D00849BDC /* Node.swift in Sources */,
 				AA539AA92A79F33500B4BAAA /* CalculatorApp.swift in Sources */,

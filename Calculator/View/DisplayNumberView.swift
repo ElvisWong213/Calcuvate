@@ -9,7 +9,6 @@ import SwiftUI
 
 struct DisplayNumberView: View {
     @EnvironmentObject var keyboardViewModel: KeyboardViewModel
-    @State var swip = false
     
     var body: some View {
         VStack(alignment: .trailing, spacing: 10) {
@@ -23,27 +22,20 @@ struct DisplayNumberView: View {
                     .font(.largeTitle)
                     .fontWeight(.medium)
                     .foregroundColor(Color.white)
+                    .id(keyboardViewModel.equation)
+                    .transition(.offset(x: keyboardViewModel.isEqualPress ? -20 : 0))
+                    .animation(
+                        .spring(response: 0.2, dampingFraction: 0.3, blendDuration: 1),
+                        value: keyboardViewModel.isEqualPress)
             }
             .contentShape(Rectangle())
-            .gesture(
-                DragGesture()
-                    .onChanged{ value in
-                        if value.translation.width > 10 && swip {
-                            if !keyboardViewModel.equation.isEmpty {
-                                keyboardViewModel.equation.removeLast()
-                            }
-                            swip = false
-                        }
-                    }
-                    .onEnded { value in
-                        swip = true
-                    }
-            )
         }
-        .animation(.easeIn(duration: 0.2), value: keyboardViewModel.history)
         .lineLimit(1)
         .minimumScaleFactor(0.1)
         .background(Color("BackgroundColor"))
+        .onChange(of: keyboardViewModel.isEqualPress) { _ in
+            keyboardViewModel.isEqualPress = false
+        }
     }
 }
 

@@ -11,13 +11,22 @@ struct KeyboardView: View {
     @EnvironmentObject var viewModel: KeyboardViewModel
     
     var body: some View {
-        Grid(horizontalSpacing: 20, verticalSpacing: 20) {
+        Grid(horizontalSpacing: 15, verticalSpacing: 15) {
             ForEach(0..<viewModel.layout.count, id: \.self) { index in
                 GridRow {
                     ForEach(viewModel.layout[index]) { item in
                         viewModel.customButton(data: item) {
                             viewModel.buildEquation(element: item.element)
                         }
+                        .simultaneousGesture(
+                            LongPressGesture()
+                                .onEnded({ _ in
+                                    if item.element == "DEL" {
+                                        viewModel.equation.removeAll()
+                                        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                                    }
+                                })
+                        )
                     }
                 }
             }

@@ -15,16 +15,17 @@ class KeyboardViewModel: ObservableObject {
     @Published var history: String = ""
     @Published var equation: String = ""
     @Published var finish = false
+    @Published var isEqualPress = false
     
     let layout: [[KeyWithColor]] =
     [
-        [.init(element: "AC", color: KeyboardColor.operatorColor2.color), .init(element: "(", color: KeyboardColor.operatorColor2.color), .init(element: ")", color: KeyboardColor.operatorColor2.color), .init(element: "÷", color: KeyboardColor.operatorColor.color)],
+        [.init(element: "DEL", color: KeyboardColor.operatorColor2.color), .init(element: "(", color: KeyboardColor.operatorColor2.color), .init(element: ")", color: KeyboardColor.operatorColor2.color), .init(element: "÷", color: KeyboardColor.operatorColor.color)],
         [.init(element: "7", color: KeyboardColor.numberColor.color), .init(element: "8", color: KeyboardColor.numberColor.color), .init(element: "9", color: KeyboardColor.numberColor.color), .init(element: "×", color: KeyboardColor.operatorColor.color)],
         [.init(element: "4", color: KeyboardColor.numberColor.color), .init(element: "5", color: KeyboardColor.numberColor.color), .init(element: "6", color: KeyboardColor.numberColor.color), .init(element: "-", color: KeyboardColor.operatorColor.color)],
         [.init(element: "1", color: KeyboardColor.numberColor.color), .init(element: "2", color: KeyboardColor.numberColor.color), .init(element: "3", color: KeyboardColor.numberColor.color), .init(element: "+", color: KeyboardColor.operatorColor.color)],
         [.init(element: "0", color: KeyboardColor.numberColor.color), .init(element: ".", color: KeyboardColor.numberColor.color), .init(element: "=", color: KeyboardColor.operatorColor.color)]
     ]
-    //        ["AC", "(", ")", "/"],
+    //        ["DEL", "(", ")", "/"],
     //        ["7", "8", "9", "X"],
     //        ["4", "5", "6", "-"],
     //        ["1", "2", "3", "+"],
@@ -47,21 +48,27 @@ class KeyboardViewModel: ObservableObject {
 extension KeyboardViewModel {
     func buildEquation(element: String) {
         switch element {
-        case "AC":
-            equation = ""
+        case "DEL":
+            if equation.contains("SyntaxError") {
+                equation.removeAll()
+            }
+            if !equation.isEmpty {
+                equation.removeLast()
+            }
         case "=":
             do {
-                if finish == false {
+                if finish == false && equation != "" {
                     history = equation
                     equation = String(try calculate.perform(input: equation))
                     finish = true
+                    isEqualPress = true
                     addResults()
                 }
             } catch {
                 history = ""
                 equation = error.localizedDescription
             }
-        case "+", "-", "×", "÷":
+        case "+", "-", "×", "÷", ".":
             if equation.contains("SyntaxError") {
                 equation.removeAll()
             }
