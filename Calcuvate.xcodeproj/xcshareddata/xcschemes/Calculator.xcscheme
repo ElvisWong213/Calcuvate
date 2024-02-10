@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AA539AA42A79F33500B4BAAA"
-               BuildableName = "Calculator.app"
-               BlueprintName = "Calculator"
-               ReferencedContainer = "container:Calculator.xcodeproj">
+               BuildableName = "Calcuvate.app"
+               BlueprintName = "Calcuvate"
+               ReferencedContainer = "container:Calcuvate.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -40,9 +40,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AA79584F2A8279A4002EB831"
-               BuildableName = "CalculatorTests.xctest"
-               BlueprintName = "CalculatorTests"
-               ReferencedContainer = "container:Calculator.xcodeproj">
+               BuildableName = "CalcuvateTests.xctest"
+               BlueprintName = "CalcuvateTests"
+               ReferencedContainer = "container:Calcuvate.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -53,7 +53,7 @@
                BlueprintIdentifier = "AA7958302A827796002EB831"
                BuildableName = "AbstractSyntaxTreesTests.xctest"
                BlueprintName = "AbstractSyntaxTreesTests"
-               ReferencedContainer = "container:Calculator.xcodeproj">
+               ReferencedContainer = "container:Calcuvate.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -62,9 +62,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AA79584F2A8279A4002EB831"
-               BuildableName = "CalculatorTests.xctest"
-               BlueprintName = "CalculatorTests"
-               ReferencedContainer = "container:Calculator.xcodeproj">
+               BuildableName = "CalcuvateTests.xctest"
+               BlueprintName = "CalcuvateTests"
+               ReferencedContainer = "container:Calcuvate.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -84,9 +84,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA539AA42A79F33500B4BAAA"
-            BuildableName = "Calculator.app"
-            BlueprintName = "Calculator"
-            ReferencedContainer = "container:Calculator.xcodeproj">
+            BuildableName = "Calcuvate.app"
+            BlueprintName = "Calcuvate"
+            ReferencedContainer = "container:Calcuvate.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -101,9 +101,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA539AA42A79F33500B4BAAA"
-            BuildableName = "Calculator.app"
-            BlueprintName = "Calculator"
-            ReferencedContainer = "container:Calculator.xcodeproj">
+            BuildableName = "Calcuvate.app"
+            BlueprintName = "Calcuvate"
+            ReferencedContainer = "container:Calcuvate.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
