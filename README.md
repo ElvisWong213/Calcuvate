@@ -7,7 +7,7 @@
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/S6S1U3FOF)
 
 ## About this project
-The new app calculator efficiently performs mathematical calculations, and offers a user-friendly interface for easy operation.
+The new app Calcuvate efficiently performs mathematical calculations, and offers a user-friendly interface for easy operation.
 
 ## Framework Used
 - SwiftUI 📱
