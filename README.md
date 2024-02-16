@@ -13,6 +13,9 @@ The new app Calcuvate efficiently performs mathematical calculations, and offers
 - SwiftUI 📱
 - CoreData 💾
 
+## Download
+[![Download_on_the_App_Store_Badge](https://github.com/ElvisWong213/ElvisWong213/assets/40566101/a3e39a79-fe54-4433-b7e1-b327a01b4f81)](https://apps.apple.com/us/app/calcuvate/id6477746999)
+
 ## Screenshots
 <p>
     <img src="images/screenshot_4.gif" width="200"/>
